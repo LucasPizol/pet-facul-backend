@@ -1,6 +1,9 @@
-import { AddUserModel, UserModel } from "@/domain/models/user";
-import { AddUserRepository } from "@/domain/repositories/user/add-user-repository";
-import { AddUser } from "@/domain/use-cases/user/add-user";
+import {
+  AddUser,
+  AddUserModel,
+  AddUserRepository,
+  UserModel,
+} from "./add-user-protocols";
 
 export class AddUserUseCase implements AddUser {
   private readonly addUserRepository: AddUserRepository;
