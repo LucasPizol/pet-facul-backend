@@ -9,7 +9,12 @@ export const validateBodyFields = <T>(fields: BodyFields<T>[], data: T) => {
   const invalidParams = [];
 
   for (const field of fields) {
-    if (!field.required) continue;
+    if (!field.required) {
+      if (typeof data[field.key] !== field.type) {
+        invalidParams.push(field.key);
+        continue;
+      }
+    }
 
     if (data[field.key] === undefined) {
       missingParams.push(field.key);
@@ -22,13 +27,15 @@ export const validateBodyFields = <T>(fields: BodyFields<T>[], data: T) => {
     }
   }
 
-  if (missingParams.length > 0 || invalidParams.length > 0) {
-    throw new Error(
-      `[Invalid Params: ${invalidParams.join(
-        ", "
-      )}], [Missing Params: ${missingParams.join(", ")}]`
-    );
-  }
+  let string = "";
+
+  if (missingParams.length > 0)
+    string += `[Missing Params: ${missingParams.join(", ")}]`;
+
+  if (invalidParams.length > 0)
+    string += `[Invalid Params: ${invalidParams.join(", ")}]`;
+
+  if (string) throw new Error(string);
 
   return data;
 };

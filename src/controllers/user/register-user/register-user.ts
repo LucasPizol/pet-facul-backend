@@ -1,6 +1,6 @@
 import { IAddUserModel } from "@/domain/models/user";
 import { IRegisterUser } from "@/domain/use-cases/user/register-user";
-import { badRequest, created, serverError } from "@/main/helpers/http";
+import { created, serverError } from "@/main/helpers/http";
 import { IController } from "@/main/protocols/controller";
 import { IHttpRequest, IHttpResponse } from "@/main/protocols/http";
 import { validateBodyFields } from "@/utils/validate-body-fields";
@@ -14,10 +14,6 @@ export class RegisterUserController implements IController {
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const user = httpRequest.user;
-
-      if (!user) return badRequest(new Error("user"));
-
       const data = validateBodyFields<IAddUserModel>(
         [
           { key: "name", required: true, type: "string" },

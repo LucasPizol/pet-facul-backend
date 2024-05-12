@@ -18,16 +18,16 @@ export const routeAdapter = (controller: IController) => {
 
     res.status(statusCode);
 
-    if (statusCode >= 200 && statusCode <= 200) {
-      return res.json(body);
+    if (statusCode >= 200 && statusCode <= 299) {
+      return res.send(body);
     }
 
     if (statusCode >= 400 && statusCode < 500) {
-      return res.json(body.message);
+      return res.send({ error: body.message });
     }
 
     if (statusCode >= 500) {
-      return res.json(body);
+      return res.send({ error: "[Server Error]", message: body.message });
     }
   };
 };
