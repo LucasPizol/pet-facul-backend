@@ -1,9 +1,13 @@
-import { IAuthenticateUserModel } from "@/domain/models/user";
-import { IAuthenticateUser } from "@/domain/use-cases/user/authenticate-user";
-import { ok, sendError } from "@/main/helpers/http";
-import { IController } from "@/main/protocols/controller";
-import { IHttpRequest, IHttpResponse } from "@/main/protocols/http";
-import { validateBodyFields } from "@/utils/validate-body-fields";
+import {
+  IAuthenticateUser,
+  IAuthenticateUserModel,
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+  ok,
+  sendError,
+  validateBodyFields,
+} from "./authenticate-user-protocols";
 
 export class AuthenticateUserController implements IController {
   private readonly authenticateUserUseCase: IAuthenticateUser;

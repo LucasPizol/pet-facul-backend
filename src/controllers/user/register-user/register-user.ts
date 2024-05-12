@@ -1,9 +1,13 @@
-import { IAddUserModel } from "@/domain/models/user";
-import { IRegisterUser } from "@/domain/use-cases/user/register-user";
-import { ok, sendError } from "@/main/helpers/http";
-import { IController } from "@/main/protocols/controller";
-import { IHttpRequest, IHttpResponse } from "@/main/protocols/http";
-import { validateBodyFields } from "@/utils/validate-body-fields";
+import {
+  IAddUserModel,
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+  IRegisterUser,
+  ok,
+  sendError,
+  validateBodyFields,
+} from "./register-user-protocols";
 
 export class RegisterUserController implements IController {
   private readonly registerUserUseCase: IRegisterUser;
