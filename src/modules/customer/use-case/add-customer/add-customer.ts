@@ -13,6 +13,11 @@ export class AddCustomerUseCase implements IAddCustomer {
   }
 
   async add(data: IAddCustomerModel): Promise<ICustomerModel> {
-    return await this.addCustomerRepository.add(data);
+    const document = data.document.replace(/[^0-9]/g, "");
+
+    return await this.addCustomerRepository.add({
+      ...data,
+      document,
+    });
   }
 }

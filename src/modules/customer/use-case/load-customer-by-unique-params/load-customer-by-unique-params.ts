@@ -17,8 +17,13 @@ export class LoadCustomerByUniqueParamsUseCase
   }
 
   async loadByUniqueParams(params: ICustomerUniqueParamsModel) {
-    return await this.loadCustomerByUniqueParamsRepository.loadByUniqueParams(
-      params
-    );
+    const document = params.document
+      ? params.document.replace(/[^0-9]/g, "")
+      : undefined;
+
+    return await this.loadCustomerByUniqueParamsRepository.loadByUniqueParams({
+      ...params,
+      document,
+    });
   }
 }
