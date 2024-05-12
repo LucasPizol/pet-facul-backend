@@ -22,3 +22,23 @@ model User {
 
   createdAt DateTime @default(now())
 }
+
+model Customer {
+  id String @id @default(uuid())
+
+  document  String
+  name      String
+  email     String
+  phone     String
+  donations Donations[]
+}
+
+model Donations {
+  id String @id @default(uuid())
+
+  type String
+  unit String
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+}
