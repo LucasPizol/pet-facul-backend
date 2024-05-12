@@ -1,0 +1,10 @@
+{
+  "[social-media-fitness] factory": {
+    "prefix": "factory",
+    "body": [
+      "export const ${1:}Factory = (): ${1:}Controller => {",
+      " return new ${1:}Controller()",
+      "}"
+    ]
+  }
+}
