@@ -7,6 +7,7 @@ interface BodyFields<T> {
 export const validateBodyFields = <T>(fields: BodyFields<T>[], data: T) => {
   const missingParams = [];
   const invalidParams = [];
+  const exceededParams = [];
 
   for (const field of fields) {
     if (!field.required) {
@@ -27,6 +28,10 @@ export const validateBodyFields = <T>(fields: BodyFields<T>[], data: T) => {
     }
   }
 
+  for (const key in data) {
+    if (!fields.find((field) => field.key === key)) exceededParams.push(key);
+  }
+
   let string = "";
 
   if (missingParams.length > 0)
@@ -34,6 +39,9 @@ export const validateBodyFields = <T>(fields: BodyFields<T>[], data: T) => {
 
   if (invalidParams.length > 0)
     string += `[Invalid Params: ${invalidParams.join(", ")}]`;
+
+  if (exceededParams.length > 0)
+    string += `[Exceeded Params: ${exceededParams.join(", ")}]`;
 
   if (string) throw new Error(string);
 

@@ -1,6 +1,6 @@
 import { IAddUserModel } from "@/domain/models/user";
 import { IRegisterUser } from "@/domain/use-cases/user/register-user";
-import { created, sendError } from "@/main/helpers/http";
+import { ok, sendError } from "@/main/helpers/http";
 import { IController } from "@/main/protocols/controller";
 import { IHttpRequest, IHttpResponse } from "@/main/protocols/http";
 import { validateBodyFields } from "@/utils/validate-body-fields";
@@ -25,7 +25,7 @@ export class RegisterUserController implements IController {
 
       const response = await this.registerUserUseCase.register(data);
 
-      return created(response);
+      return ok(response);
     } catch (error) {
       return sendError(error);
     }
