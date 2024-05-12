@@ -1,5 +1,5 @@
 export interface IJWTSign {
-  sign: (value: string, expiresIn: string) => string;
+  sign: (value: any, expiresIn: string) => string;
 }
 
 export interface IJWTVerify {

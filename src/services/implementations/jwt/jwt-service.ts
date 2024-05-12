@@ -15,7 +15,7 @@ export class JWTService implements IJWTSign, IJWTVerify {
     this.secret = secret;
   }
 
-  sign(value: string, expiresIn: string): string {
+  sign(value: any, expiresIn: string): string {
     return jwt.sign({ value }, this.secret, {
       expiresIn,
     });
