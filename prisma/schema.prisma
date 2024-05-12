@@ -10,12 +10,12 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "./database.db"
+  url      = "file:./database.db"
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  
+  id String @id @default(uuid())
+
   username String @unique
   name     String
   password String
