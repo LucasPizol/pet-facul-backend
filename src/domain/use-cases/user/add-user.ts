@@ -1,5 +1,5 @@
-import { AddUserModel, UserModel } from "@/domain/models/user";
+import { IAddUserModel, IUserModel } from "@/domain/models/user";
 
-export interface AddUser {
-  add: (data: AddUserModel) => Promise<UserModel>;
+export interface IAddUser {
+  add: (data: IAddUserModel) => Promise<IUserModel>;
 }

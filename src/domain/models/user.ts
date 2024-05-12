@@ -1,4 +1,4 @@
-export interface UserModel {
+export interface IUserModel {
   id: string;
   username: string;
   name: string;
@@ -6,7 +6,7 @@ export interface UserModel {
   createdAt: Date;
 }
 
-export interface AddUserModel {
+export interface IAddUserModel {
   username: string;
   name: string;
   password: string;

@@ -1,9 +1,9 @@
-import { AddUserModel, UserModel } from "@/domain/models/user";
-import { AddUserRepository } from "@/domain/repositories/user/add-user-repository";
+import { IAddUserModel, IUserModel } from "@/domain/models/user";
+import { IAddUserRepository } from "@/domain/repositories/user/add-user-repository";
 import { prismaHelper } from "../prisma/prisma-helper";
 
-export class UserInfra implements AddUserRepository {
-  async add(data: AddUserModel): Promise<UserModel> {
+export class UserInfra implements IAddUserRepository {
+  async add(data: IAddUserModel): Promise<IUserModel> {
     return await prismaHelper.user.create({
       data,
     });

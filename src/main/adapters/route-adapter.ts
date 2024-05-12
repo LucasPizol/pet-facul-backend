@@ -1,9 +1,9 @@
 import { Response } from "express";
-import { Controller } from "../protocols/controller";
-import { HttpRequest } from "../protocols/http";
+import { CIontroller } from "../protocols/controller";
+import { IHttpRequest } from "../protocols/http";
 
-export const routeAdapter = (controller: Controller) => {
-  return async (req: HttpRequest, res: Response) => {
+export const routeAdapter = (controller: CIontroller) => {
+  return async (req: IHttpRequest, res: Response) => {
     const httpRequest = {
       body: req.body,
       params: req.params,

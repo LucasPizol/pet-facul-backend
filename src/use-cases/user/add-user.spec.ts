@@ -1,10 +1,10 @@
 import { MockProxy, mock } from "jest-mock-extended";
 import { AddUserUseCase } from "./add-user";
-import { AddUser, AddUserRepository } from "./add-user-protocols";
+import { IAddUser, IAddUserRepository } from "./add-user-protocols";
 
 describe("AddUserUseCase", () => {
-  let addUserUseCase: AddUser;
-  let addUserRepository: MockProxy<AddUserRepository>;
+  let addUserUseCase: IAddUser;
+  let addUserRepository: MockProxy<IAddUserRepository>;
 
   const date = new Date();
 

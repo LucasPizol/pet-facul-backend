@@ -1,18 +1,18 @@
 import {
-  AddUser,
-  AddUserModel,
-  AddUserRepository,
-  UserModel,
+  IAddUser,
+  IAddUserModel,
+  IAddUserRepository,
+  IUserModel,
 } from "./add-user-protocols";
 
-export class AddUserUseCase implements AddUser {
-  private readonly addUserRepository: AddUserRepository;
+export class AddUserUseCase implements IAddUser {
+  private readonly addUserRepository: IAddUserRepository;
 
-  constructor(addUserRepository: AddUserRepository) {
+  constructor(addUserRepository: IAddUserRepository) {
     this.addUserRepository = addUserRepository;
   }
 
-  async add(user: AddUserModel): Promise<UserModel> {
+  async add(user: IAddUserModel): Promise<IUserModel> {
     return await this.addUserRepository.add(user);
   }
 }
