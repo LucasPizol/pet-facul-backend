@@ -15,6 +15,9 @@ export class AddCustomerUseCase implements IAddCustomer {
   async add(data: IAddCustomerModel): Promise<ICustomerModel> {
     const document = data.document.replace(/[^0-9]/g, "");
 
+    if (document.length !== 11 && document.length !== 14)
+      throw new Error("Invalid document");
+
     return await this.addCustomerRepository.add({
       ...data,
       document,
