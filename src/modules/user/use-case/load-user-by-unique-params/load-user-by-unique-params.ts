@@ -13,9 +13,9 @@ export class LoadUserByUniqueParamsUseCase implements ILoadUserByUniqueParams {
     this.LoadUserByUniqueParamsRepository = LoadUserByUniqueParamsRepository;
   }
 
-  async loadByUniqueParams(where: IUserUniqueParamsModel) {
+  async loadByUniqueParams(params: IUserUniqueParamsModel) {
     return await this.LoadUserByUniqueParamsRepository.loadByUniqueParams(
-      where
+      params
     );
   }
 }

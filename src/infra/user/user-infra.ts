@@ -17,12 +17,12 @@ export class UserInfra
   }
 
   async loadByUniqueParams(
-    where: IUserUniqueParamsModel
+    params: IUserUniqueParamsModel
   ): Promise<IUserModel | null> {
     return await prismaHelper.user.findUnique({
       where: {
-        id: where.id,
-        username: where.username,
+        id: params.id,
+        username: params.username,
       },
     });
   }

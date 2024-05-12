@@ -1,9 +1,9 @@
-import { AuthenticateUserController } from "@/controllers/user/authenticate-user/authenticate-user";
 import { UserInfra } from "@/infra/user/user-infra";
+import { AuthenticateUserController } from "@/modules/user/controller/authenticate-user/authenticate-user";
+import { AuthenticateUserUseCase } from "@/modules/user/use-case/authenticate-user/authenticate-user";
+import { LoadUserByUniqueParamsUseCase } from "@/modules/user/use-case/load-user-by-unique-params/load-user-by-unique-params";
 import { BcryptService } from "@/services/implementations/bcrypt/bcrypt-service";
 import { JWTService } from "@/services/implementations/jwt/jwt-service";
-import { AuthenticateUserUseCase } from "@/use-cases/user/authenticate-user/authenticate-user";
-import { LoadUserByUniqueParamsUseCase } from "@/use-cases/user/load-user-by-unique-params/load-user-by-unique-params";
 
 export const authenticateUserFactory = () => {
   return new AuthenticateUserController(

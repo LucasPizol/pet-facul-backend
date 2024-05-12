@@ -2,6 +2,6 @@ import { IUserModel, IUserUniqueParamsModel } from "@/domain/models/user";
 
 export interface ILoadUserByUniqueParamsRepository {
   loadByUniqueParams: (
-    where: IUserUniqueParamsModel
+    params: IUserUniqueParamsModel
   ) => Promise<IUserModel | null>;
 }
