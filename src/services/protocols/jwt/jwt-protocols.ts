@@ -3,5 +3,5 @@ export interface IJWTSign {
 }
 
 export interface IJWTVerify {
-  verify: (token: string) => Promise<string | null>;
+  verify: <T>(token: string) => Promise<T | null>;
 }
