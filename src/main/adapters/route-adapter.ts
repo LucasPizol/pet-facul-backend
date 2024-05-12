@@ -1,8 +1,8 @@
 import { Response } from "express";
-import { CIontroller } from "../protocols/controller";
+import { IController } from "../protocols/controller";
 import { IHttpRequest } from "../protocols/http";
 
-export const routeAdapter = (controller: CIontroller) => {
+export const routeAdapter = (controller: IController) => {
   return async (req: IHttpRequest, res: Response) => {
     const httpRequest = {
       body: req.body,

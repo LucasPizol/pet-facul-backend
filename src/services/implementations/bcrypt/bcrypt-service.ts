@@ -4,7 +4,7 @@ import {
 } from "@/services/protocols/bcrypt/bcrypt-protocols";
 import bcrypt from "bcrypt";
 
-export class BcryptHelper implements IBcryptCompare, IBcryptHash {
+export class BcryptService implements IBcryptCompare, IBcryptHash {
   async compare(value: string, hash: string) {
     return await bcrypt.compare(value, hash);
   }

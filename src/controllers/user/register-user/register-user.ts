@@ -5,7 +5,7 @@ import { IController } from "@/main/protocols/controller";
 import { IHttpRequest, IHttpResponse } from "@/main/protocols/http";
 import { validateBodyFields } from "@/utils/validate-body-fields";
 
-export class IRegisterUserController implements IController {
+export class RegisterUserController implements IController {
   private readonly registerUserUseCase: IRegisterUser;
 
   constructor(registerUserUseCase: IRegisterUser) {

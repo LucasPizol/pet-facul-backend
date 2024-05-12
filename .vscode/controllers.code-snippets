@@ -7,7 +7,7 @@
       "import { IHttpRequest, IHttpResponse } from '@/main/protocols/http';",
       "import { validateBodyFields } from '@/utils/validate-body-fields'",
       "",
-      "export class IAdd${1:}Controller implements IController {",
+      "export class Add${1:}Controller implements IController {",
       "",
       "  private readonly add${1:}UseCase: IAdd${1:};",
       "",
