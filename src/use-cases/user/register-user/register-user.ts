@@ -4,7 +4,6 @@ import {
   IBcryptHash,
   IJWTSign,
   IRegisterUser,
-  IUserModel,
 } from "./register-user-protocols";
 
 export class RegisterUserUseCase implements IRegisterUser {
@@ -22,9 +21,7 @@ export class RegisterUserUseCase implements IRegisterUser {
     this.jwtService = jwtService;
   }
 
-  async register(
-    data: IAddUserModel
-  ): Promise<Omit<IUserModel, "password"> & { token: string }> {
+  async register(data: IAddUserModel) {
     const hashedPassword = await this.bcryptService.hash(data.password);
 
     const user = await this.addUserUseCase.add({

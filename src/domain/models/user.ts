@@ -11,3 +11,13 @@ export interface IAddUserModel {
   name: string;
   password: string;
 }
+
+export interface IAuthenticateUserModel {
+  username: string;
+  password: string;
+}
+
+export interface IUserUniqueParamsModel {
+  username?: string;
+  id?: string;
+}

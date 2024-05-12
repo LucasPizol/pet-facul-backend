@@ -2,12 +2,12 @@
   "[social-media-fitness] use-case": {
     "prefix": "usecase",
     "body": [
-      "export class ${1:}UseCase implements ${1:} {",
+      "export class ${1:}UseCase implements I${1:} {",
       "",
-      "  private readonly ${1:}Repository: ${1:}Repository;",
+      "  private readonly ${1:}Repository: I${1:}Repository;",
       "",
-      "  constructor(${1:}Repository: ${1:}Repository) {",
-      "    this.${1:}Repository =  ${1:}Repository;",
+      "  constructor(${1:}Repository: I${1:}Repository) {",
+      "    this.${1:}Repository = ${1:}Repository;",
       "  }",
       "",
       "}"

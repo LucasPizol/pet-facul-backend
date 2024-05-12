@@ -2,7 +2,6 @@ import {
   IAddUser,
   IAddUserModel,
   IAddUserRepository,
-  IUserModel,
 } from "./add-user-protocols";
 
 export class AddUserUseCase implements IAddUser {
@@ -12,7 +11,7 @@ export class AddUserUseCase implements IAddUser {
     this.addUserRepository = addUserRepository;
   }
 
-  async add(user: IAddUserModel): Promise<IUserModel> {
+  async add(user: IAddUserModel) {
     return await this.addUserRepository.add(user);
   }
 }

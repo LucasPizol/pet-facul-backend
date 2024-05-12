@@ -18,6 +18,14 @@ export const serverError = (body: any) => ({
   body,
 });
 
+export const sendError = (body: any) => {
+  if (body instanceof Error) {
+    return badRequest(body);
+  }
+
+  return serverError(body);
+};
+
 export const forbidden = (body: Error) => ({
   statusCode: 403,
   body,
