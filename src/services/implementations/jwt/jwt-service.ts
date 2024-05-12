@@ -27,7 +27,9 @@ export class JWTService implements IJWTSign, IJWTVerify {
         if (error || !decoded) {
           resolve(null);
         } else {
-          resolve(decoded as T);
+          const { value } = decoded as { value: T };
+
+          resolve(value);
         }
       });
     });
