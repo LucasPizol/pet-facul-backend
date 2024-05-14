@@ -11,10 +11,13 @@ export const validateBodyFields = <T>(fields: BodyFields<T>[], data: T) => {
 
   for (const field of fields) {
     if (!field.required) {
-      if (typeof data[field.key] !== field.type) {
+      if (
+        typeof data[field.key] !== field.type &&
+        data[field.key] !== undefined
+      )
         invalidParams.push(field.key);
-        continue;
-      }
+
+      continue;
     }
 
     if (data[field.key] === undefined) {

@@ -14,3 +14,9 @@ export interface IAddDonationModel {
   value: number;
   customerId: string;
 }
+
+export interface IUpdateDonationModel {
+  product: string;
+  unit: string;
+  value: number;
+}
