@@ -50,3 +50,17 @@ model Donations {
   customerId String
   customer   Customer @relation(fields: [customerId], references: [id])
 }
+
+model Payment {
+  id String @id @default(uuid())
+
+  description String?
+  value       Int
+  type        String
+
+  hasDeleted Boolean @default(false)
+
+  createdAt DateTime  @default(now())
+  paidAt    DateTime?
+  deletedAt DateTime?
+}
