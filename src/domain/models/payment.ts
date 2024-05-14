@@ -19,8 +19,6 @@ export interface IAddPaymentModel {
 }
 
 export interface IUpdatePaymentModel extends IAddPaymentModel {
-  paidAt: Date | null;
   hasPaid: boolean;
   hasDeleted: boolean;
-  deletedAt: Date | null;
 }
