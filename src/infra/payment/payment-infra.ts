@@ -21,11 +21,19 @@ export class PaymentInfra
   }
 
   async updateById(id: string, data: Partial<IUpdatePaymentModel>) {
+    const updateData = {
+      ...data,
+      hasPaid: data.hasPaid === undefined ? undefined : data.hasPaid,
+      paidAt: data.hasPaid ? new Date() : null,
+      deletedAt: data.hasDeleted === undefined ? undefined : new Date(),
+      hasDeleted: data.hasDeleted === undefined ? undefined : data.hasDeleted,
+    };
+
     return await prismaHelper.payment.update({
       where: {
         id,
       },
-      data,
+      data: updateData,
     });
   }
 }

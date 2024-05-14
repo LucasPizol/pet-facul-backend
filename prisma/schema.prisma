@@ -59,6 +59,7 @@ model Payment {
   type        String
 
   hasDeleted Boolean @default(false)
+  hasPaid    Boolean @default(false)
 
   createdAt DateTime  @default(now())
   paidAt    DateTime?

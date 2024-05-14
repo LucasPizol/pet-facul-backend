@@ -1,4 +1,8 @@
 import {
+  IUpdatePaymentModel,
+  validateBodyFields,
+} from "../add-payment/add-payment-protocols";
+import {
   IController,
   IHttpRequest,
   IHttpResponse,
@@ -18,13 +22,20 @@ export class UpdatePaymentByIdController implements IController {
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const user = httpRequest.user;
-      const data = httpRequest.body;
       const params = httpRequest.params;
 
       if (!user) return badRequest(new Error("User not found"));
       if (!params.id) return badRequest(new Error("Params ID not found"));
-      if (data.id !== undefined)
-        return badRequest(new Error("Youre trying to update the ID"));
+
+      const data = validateBodyFields<IUpdatePaymentModel>(
+        [
+          { key: "value", required: false, type: "number" },
+          { key: "description", required: false, type: "string" },
+          { key: "paidAt", required: false, type: "string" },
+          { key: "value", required: false, type: "string" },
+        ],
+        httpRequest.body
+      );
 
       const response = await this.updatePaymentByIdUseCase.updateById(
         params.id,

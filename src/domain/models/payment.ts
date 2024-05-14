@@ -6,6 +6,7 @@ export interface IPaymentModel {
   value: number;
   type: string;
   hasDeleted: boolean;
+  hasPaid: boolean;
   createdAt: Date;
   paidAt: Date | null;
   deletedAt: Date | null;
@@ -19,4 +20,7 @@ export interface IAddPaymentModel {
 
 export interface IUpdatePaymentModel extends IAddPaymentModel {
   paidAt: Date | null;
+  hasPaid: boolean;
+  hasDeleted: boolean;
+  deletedAt: Date | null;
 }
