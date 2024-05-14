@@ -1,6 +1,6 @@
 export interface IDonationModel {
   id: string;
-  type: string;
+  product: string;
   unit: string;
   customerId: string;
   value: number;
@@ -9,7 +9,7 @@ export interface IDonationModel {
 }
 
 export interface IAddDonationModel {
-  type: string;
+  product: string;
   unit: string;
   value: number;
   customerId: string;

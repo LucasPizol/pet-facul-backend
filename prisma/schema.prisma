@@ -40,9 +40,9 @@ model Customer {
 model Donations {
   id String @id @default(uuid())
 
-  type  String
-  unit  String
-  value Int
+  product String
+  unit    String
+  value   Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())

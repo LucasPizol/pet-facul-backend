@@ -26,7 +26,7 @@ export class AddDonationController implements IController {
 
       const data = validateBodyFields<IAddDonationModel & IAddCustomerModel>(
         [
-          { key: "type", required: true, type: "string" },
+          { key: "product", required: true, type: "string" },
           { key: "unit", required: true, type: "string" },
           { key: "value", required: true, type: "number" },
           { key: "phone", required: true, type: "string" },

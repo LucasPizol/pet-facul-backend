@@ -23,7 +23,7 @@ export class AddDonationUseCase implements IAddDonation {
   }
 
   async add(data: IAddDonationModel & IAddCustomerModel) {
-    const { document, email, name, phone, type, unit, value } = data;
+    const { document, email, name, phone, product, unit, value } = data;
 
     let customer =
       await this.loadCustomerByUniqueParamsUseCase.loadByUniqueParams({
@@ -40,7 +40,7 @@ export class AddDonationUseCase implements IAddDonation {
     }
 
     return await this.addDonationRepository.add({
-      type,
+      product,
       unit,
       value,
       customerId: customer.id,

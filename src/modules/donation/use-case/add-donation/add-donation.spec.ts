@@ -28,7 +28,7 @@ describe("AddDonationUseCase", () => {
 
     addDonationRepository.add.mockResolvedValue({
       id: "any_id",
-      type: "any_type",
+      product: "any_product",
       unit: "any_unit",
       value: 100,
       customerId: "any_customer_id",
@@ -46,7 +46,7 @@ describe("AddDonationUseCase", () => {
   });
 
   const data = {
-    type: "any_type",
+    product: "any_product",
     unit: "any_unit",
     value: 100,
     customerId: "any_customer_id",
@@ -61,7 +61,7 @@ describe("AddDonationUseCase", () => {
 
     expect(response).toEqual({
       id: "any_id",
-      type: "any_type",
+      product: "any_product",
       unit: "any_unit",
       value: 100,
       customerId: "any_customer_id",
@@ -78,7 +78,7 @@ describe("AddDonationUseCase", () => {
     expect(addCustomerUseCase.add).toHaveBeenCalledTimes(0);
     expect(addDonationRepository.add).toHaveBeenCalledWith({
       customerId: "any_id",
-      type: "any_type",
+      product: "any_product",
       unit: "any_unit",
       value: 100,
     });
@@ -103,7 +103,7 @@ describe("AddDonationUseCase", () => {
 
     expect(response).toEqual({
       id: "any_id",
-      type: "any_type",
+      product: "any_product",
       unit: "any_unit",
       value: 100,
       customerId: "any_customer_id",
@@ -120,7 +120,7 @@ describe("AddDonationUseCase", () => {
     expect(addCustomerUseCase.add).toHaveBeenCalledTimes(0);
     expect(addDonationRepository.add).toHaveBeenCalledWith({
       customerId: "any_id",
-      type: "any_type",
+      product: "any_product",
       unit: "any_unit",
       value: 100,
     });
