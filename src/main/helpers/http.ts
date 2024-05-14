@@ -41,7 +41,7 @@ export const notFound = (body: Error) => ({
   body,
 });
 
-export const noContent = (body: any) => ({
+export const noContent = () => ({
   statusCode: 204,
-  body,
+  body: undefined,
 });
