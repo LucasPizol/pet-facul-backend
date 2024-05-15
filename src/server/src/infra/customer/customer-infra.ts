@@ -6,10 +6,10 @@ import {
 import { IAddCustomerRepository } from "@/domain/repositories/customer/add-customer-repository";
 import { ILoadCustomerByUniqueParamsRepository } from "@/domain/repositories/customer/load-customer-by-unique-params-repository";
 import { prismaHelper } from "../prisma/prisma-helper";
+import { ILoadCustomerRepository } from "@/domain/repositories/customer/load-customer-repository";
 
 export class CustomerInfra
-  implements ILoadCustomerByUniqueParamsRepository, IAddCustomerRepository
-{
+  implements ILoadCustomerByUniqueParamsRepository, IAddCustomerRepository, ILoadCustomerRepository {
   async loadByUniqueParams(
     params: ICustomerUniqueParamsModel
   ): Promise<ICustomerModel | null> {
@@ -25,5 +25,9 @@ export class CustomerInfra
     return await prismaHelper.customer.create({
       data,
     });
+  }
+
+  async load(): Promise<ICustomerModel[]> {
+    return await prismaHelper.customer.findMany();
   }
 }

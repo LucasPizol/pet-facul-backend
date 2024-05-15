@@ -6,8 +6,9 @@ import { useState } from 'react'
 import { PhoneField } from '../fields/phone'
 interface CustomerFormProps {
   form: FormInstance
+  onSubmit?: (values: any) => void
 }
-export const CustomerForm = ({ form }: CustomerFormProps) => {
+export const CustomerForm = ({ form, onSubmit }: CustomerFormProps) => {
   const [disableFields, setDisableFields] = useState<boolean>(false)
 
   const handleDisableFields = () => {
@@ -15,7 +16,7 @@ export const CustomerForm = ({ form }: CustomerFormProps) => {
   }
 
   return (
-    <Form layout="vertical" form={form}>
+    <Form layout="vertical" form={form} onFinish={onSubmit} >
       <DocumentField
         disableFields={handleDisableFields}
         form={form}

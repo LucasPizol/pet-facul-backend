@@ -4,11 +4,25 @@ import { Avatar, Button, Layout, Menu, Row, Typography } from 'antd'
 
 const { Content, Sider } = Layout
 
+const items = [
+  {
+    label: 'Doações',
+    key: '/donations',
+    icon: <UserOutlined />
+  },
+  {
+    label: 'Tutores',
+    key: '/customers',
+    icon: <UserOutlined />
+  }
+]
+
 export const PageLayoutView = ({
   path,
   children,
   user,
-  logout
+  logout,
+  navigate
 }: ReturnType<typeof usePageLayout>) => {
   return (
     <Layout
@@ -77,13 +91,10 @@ export const PageLayoutView = ({
             }}
             mode="inline"
             selectedKeys={[path]}
-            items={[
-              {
-                key: '/donations',
-                icon: <UserOutlined />,
-                label: 'Doações'
-              }
-            ]}
+            items={items.map((item) => ({
+              ...item,
+              onClick: () => navigate(item.key)
+            }))}
           />
         </Row>
         <Row

@@ -7,6 +7,7 @@ import { DonationPage } from './pages/donation'
 import { Col, Progress } from 'antd'
 import Lottie from 'react-lottie'
 import dogLoading from '@renderer/assets/lotties/dog_loading.json'
+import { CustomerPage } from './pages/customer'
 
 export const Routes = () => {
   const { user, pageProgress } = useSession()
@@ -59,6 +60,7 @@ export const Routes = () => {
         <PageLayout>
           <ReactRoutes>
             <Route path="/donations" element={<DonationPage />} />
+            <Route path="/customers" element={<CustomerPage />} />
             <Route path="*" element={<Navigate to="/donations" />} />
           </ReactRoutes>
         </PageLayout>
