@@ -4,18 +4,23 @@ import { useMemo } from 'react'
 import { useSession } from './context/session/useSession'
 
 export const Routes = () => {
-  const {user} = useSession()
+  const { user } = useSession()
   const component = useMemo(() => {
     if (user) {
-      return <ReactRoutes>
-        <Route path="/" element={<div>Home</div>} />
-      </ReactRoutes>
+      return (
+        <ReactRoutes>
+          <Route path="/" element={<p>Home</p>} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </ReactRoutes>
+      )
     }
 
-    return <ReactRoutes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="*" element={<Navigate to="/login"/>} />
-    </ReactRoutes>
+    return (
+      <ReactRoutes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </ReactRoutes>
+    )
   }, [user])
 
   return component

@@ -1,12 +1,13 @@
-import { Button, Col, Form, Row, Typography } from 'antd'
+import { Button, Checkbox, Col, Form, Row, Typography } from 'antd'
 import { useLoginModel } from './model'
 import imgLogin from '@renderer/assets/img_login.png'
 import { UsernameField } from '@renderer/components/fields/username'
 import { PasswordField } from '@renderer/components/fields/password'
 
-export const LoginView = ({ loading, login, form }: ReturnType<typeof useLoginModel>) => {
+export const LoginView = ({ loading, form, submitInfo, contextHolder }: ReturnType<typeof useLoginModel>) => {
   return (
     <Row style={{ height: '100vh', overflow: 'hidden' }}>
+      {contextHolder}
       <Col span={14} style={{ height: '100%', padding: 0 }}>
         <img
           src={imgLogin}
@@ -39,14 +40,44 @@ export const LoginView = ({ loading, login, form }: ReturnType<typeof useLoginMo
           style={{ width: '100%' }}
           layout="vertical"
           form={form}
-          onFinish={() => form.validateFields().then((values) => login(values))}
+          onFinish={(values) => submitInfo(values)}
           className="login-form"
+          initialValues={JSON.parse(localStorage.getItem('@animal:credentials') || '{}')}
         >
           <UsernameField />
           <PasswordField />
-          <Button type="primary" htmlType="submit" loading={loading} onClick={form.submit}>
-            Entrar
-          </Button>
+
+          <Form.Item name="remember" valuePropName="checked">
+            <Checkbox>Lembrar-me</Checkbox>
+          </Form.Item>
+
+          <Row
+            style={{
+              gap: 12
+            }}
+          >
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              style={{
+                width: '100%'
+              }}
+            >
+              Entrar
+            </Button>
+            <Button
+              type="default"
+              htmlType="submit"
+              loading={loading}
+              style={{
+                width: '100%',
+                color: '#fff'
+              }}
+            >
+              Cadastrar-se
+            </Button>
+          </Row>
         </Form>
       </Col>
     </Row>

@@ -18,7 +18,9 @@
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "generate": "prisma generate --schema=./src/server/prisma/schema.prisma",
+    "push": "prisma db push --schema=./src/server/prisma/schema.prisma"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",

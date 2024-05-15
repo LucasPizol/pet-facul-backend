@@ -2,7 +2,6 @@ import { IAddUserModel, IAuthenticateUserModel, IUserModel } from '@renderer/int
 import { authenticateUser } from '@renderer/requests/auth/authenticate-user'
 import { registerUser } from '@renderer/requests/auth/register-user'
 import { createContext, useContext, useState } from 'react'
-import { message } from 'antd'
 
 interface SessionProps {
   user: IUserModel | null
@@ -26,7 +25,6 @@ export const useSession = () => {
 export const SessionProvider = ({ children }: any) => {
   const [user, setUser] = useState<IUserModel | null>(null)
   const [loading, setLoading] = useState(false)
-  const [messageApi, contextHolder] = message.useMessage()
 
   const login = async (params: IAuthenticateUserModel) => {
     try {
@@ -34,11 +32,11 @@ export const SessionProvider = ({ children }: any) => {
       const user = await authenticateUser(params)
       setUser(user)
       sessionStorage.setItem('token', user.token)
-      messageApi.success('Login realizado com sucesso!')
+      setLoading(false)
     } catch (error) {
-      messageApi.error('Usuário ou senha inválidos!')
+      setLoading(false)
+      throw error
     }
-    setLoading(false)
   }
 
   const register = async (params: IAddUserModel) => {
@@ -46,19 +44,16 @@ export const SessionProvider = ({ children }: any) => {
       setLoading(true)
       const user = await registerUser(params)
       setUser(user)
-      messageApi.success('Usuário criado com sucesso!')
+      setLoading(false)
     } catch (error) {
-      messageApi.error('Erro ao criar usuário!')
+      setLoading(false)
+      throw error
     }
-    setLoading(false)
   }
 
   return (
     <SessionContext.Provider value={{ login, user, register, loading }}>
-      <>
-        {contextHolder}
-        {children}
-      </>
+      <>{children}</>
     </SessionContext.Provider>
   )
 }
