@@ -3,7 +3,7 @@ import { IAuthenticateUserModel, IUserModel } from '@renderer/interfaces/user'
 
 export const authenticateUser = async (
   params: IAuthenticateUserModel
-): Promise<IUserModel | null> => {
+): Promise<IUserModel & {token: string}> => {
   const { username, password } = params
   return api
     .post('/user/login', { username, password })

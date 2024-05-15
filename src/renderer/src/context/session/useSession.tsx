@@ -6,6 +6,7 @@ import { message } from 'antd'
 
 interface SessionProps {
   user: IUserModel | null
+  loading: boolean
 
   login: (params: IAuthenticateUserModel) => Promise<void>
   register: (params: IAddUserModel) => Promise<void>
@@ -24,30 +25,36 @@ export const useSession = () => {
 
 export const SessionProvider = ({ children }: any) => {
   const [user, setUser] = useState<IUserModel | null>(null)
+  const [loading, setLoading] = useState(false)
   const [messageApi, contextHolder] = message.useMessage()
 
   const login = async (params: IAuthenticateUserModel) => {
     try {
+      setLoading(true)
       const user = await authenticateUser(params)
       setUser(user)
+      sessionStorage.setItem('token', user.token)
       messageApi.success('Login realizado com sucesso!')
     } catch (error) {
       messageApi.error('Usuário ou senha inválidos!')
     }
+    setLoading(false)
   }
 
   const register = async (params: IAddUserModel) => {
     try {
+      setLoading(true)
       const user = await registerUser(params)
       setUser(user)
       messageApi.success('Usuário criado com sucesso!')
     } catch (error) {
       messageApi.error('Erro ao criar usuário!')
     }
+    setLoading(false)
   }
 
   return (
-    <SessionContext.Provider value={{ login, user, register }}>
+    <SessionContext.Provider value={{ login, user, register, loading }}>
       <>
         {contextHolder}
         {children}

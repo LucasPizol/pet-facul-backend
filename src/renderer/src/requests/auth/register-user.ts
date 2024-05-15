@@ -3,7 +3,7 @@ import { IAddUserModel, IUserModel } from '@renderer/interfaces/user'
 
 export const registerUser = async (
   params: IAddUserModel
-): Promise<IUserModel | null> => {
+): Promise<(IUserModel & { token: string })> => {
   const { username, password, name } = params
   return api
     .post('/user/register', { username, password, name })
