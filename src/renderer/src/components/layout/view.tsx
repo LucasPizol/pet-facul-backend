@@ -1,6 +1,6 @@
-import { usePageLayout } from './model'
-import { UserOutlined } from '@ant-design/icons'
+import { InboxOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Button, Layout, Menu, Row, Typography } from 'antd'
+import { usePageLayout } from './model'
 
 const { Content, Sider } = Layout
 
@@ -8,7 +8,7 @@ const items = [
   {
     label: 'Doações',
     key: '/donations',
-    icon: <UserOutlined />
+    icon: <InboxOutlined />
   },
   {
     label: 'Tutores',
