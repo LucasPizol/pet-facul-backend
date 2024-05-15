@@ -16,9 +16,8 @@ function App(): JSX.Element {
               colorTextLightSolid: '#000000',
               colorBgContainer: 'transparent',
               colorBorder: '#BCA213',
-              
-            }
-          }
+            },
+          },
         }}
       >
         <HashRouter>

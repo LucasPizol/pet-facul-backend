@@ -1,14 +1,26 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
 }
 
 :root {
-    --primary-color: #131929;
-    --secondary-color: #D4B927;
+  --primary-color: #131929;
+  --secondary-color: #d4b927;
 }
 
 .login-form label {
-    color:#fff !important
+  color: #fff !important;
+}
+
+.layout .ant-menu-item {
+  margin: 0 !important;
+  border-radius: 0;
+}
+
+.ant-menu-item-selected {
+  background-color: #272e41 !important;
 }

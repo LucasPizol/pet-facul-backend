@@ -2,16 +2,21 @@ import { Navigate, Routes as ReactRoutes, Route } from 'react-router-dom'
 import { LoginPage } from './pages/login'
 import { useMemo } from 'react'
 import { useSession } from './context/session/useSession'
+import { PageLayout } from './components/layout'
 
 export const Routes = () => {
   const { user } = useSession()
   const component = useMemo(() => {
     if (user) {
       return (
-        <ReactRoutes>
-          <Route path="/" element={<p>Home</p>} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </ReactRoutes>
+        <>
+          <PageLayout>
+            <ReactRoutes>
+              <Route path="/donations" />
+              <Route path="*" element={<Navigate to="/donations" />} />
+            </ReactRoutes>
+          </PageLayout>
+        </>
       )
     }
 
