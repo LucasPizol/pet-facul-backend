@@ -4,12 +4,12 @@ import { useMemo } from 'react'
 import { useSession } from './context/session/useSession'
 import { PageLayout } from './components/layout'
 import { DonationPage } from './pages/donation'
-import { Col } from 'antd'
+import { Col, Progress } from 'antd'
 import Lottie from 'react-lottie'
 import dogLoading from '@renderer/assets/lotties/dog_loading.json'
 
 export const Routes = () => {
-  const { user, pageLoading } = useSession()
+  const { user, pageProgress } = useSession()
 
   const defaultOptions = {
     loop: true,
@@ -20,7 +20,7 @@ export const Routes = () => {
     }
   }
 
-  if (pageLoading)
+  if (pageProgress !== 0)
     return (
       <Col
         span={24}
@@ -43,6 +43,12 @@ export const Routes = () => {
           }}
         >
           <Lottie options={defaultOptions} height={300} width={300} />
+          <Progress
+            percent={pageProgress}
+            style={{
+              maxWidth: 150
+            }}
+          />
         </Col>
       </Col>
     )

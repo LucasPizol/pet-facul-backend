@@ -4,9 +4,7 @@ import { Avatar, Button, Layout, Menu, Row, Typography } from 'antd'
 
 const { Content, Sider } = Layout
 
-export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePageLayout>) => {
-  console.log(user)
-
+export const PageLayoutView = ({ path, children, user, logout }: ReturnType<typeof usePageLayout>) => {
   return (
     <Layout
       className="layout"
@@ -95,6 +93,7 @@ export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePa
           <Button
             type="primary"
             danger
+            onClick={logout}
             style={{
               width: '100%'
             }}
