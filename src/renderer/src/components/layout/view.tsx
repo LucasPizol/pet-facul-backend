@@ -4,7 +4,12 @@ import { Avatar, Button, Layout, Menu, Row, Typography } from 'antd'
 
 const { Content, Sider } = Layout
 
-export const PageLayoutView = ({ path, children, user, logout }: ReturnType<typeof usePageLayout>) => {
+export const PageLayoutView = ({
+  path,
+  children,
+  user,
+  logout
+}: ReturnType<typeof usePageLayout>) => {
   return (
     <Layout
       className="layout"
@@ -13,8 +18,6 @@ export const PageLayoutView = ({ path, children, user, logout }: ReturnType<type
       }}
     >
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
         style={{
           padding: 0,
           display: 'flex',
@@ -107,7 +110,7 @@ export const PageLayoutView = ({ path, children, user, logout }: ReturnType<type
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          height:"100%"
+          height: '100%'
         }}
       >
         <Content

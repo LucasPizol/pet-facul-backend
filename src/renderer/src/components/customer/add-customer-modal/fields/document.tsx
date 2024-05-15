@@ -4,11 +4,23 @@ import { Form, FormInstance, Input } from 'antd'
 interface DocumentFieldProps {
   form: FormInstance
   disableFields: () => void
+  isFieldsDisabled: boolean
 }
 
-export const DocumentField = ({ form, disableFields }: DocumentFieldProps) => {
+export const DocumentField = ({ form, disableFields, isFieldsDisabled }: DocumentFieldProps) => {
   const handleDocumentChange = async (value: string) => {
-    if (value.length < 11) return
+    if (value.length < 11) {
+      if (isFieldsDisabled) {
+        disableFields()
+        form.setFieldsValue({
+          document: value,
+          name: '',
+          email: '',
+          phone: ''
+        })
+      }
+      return
+    }
 
     try {
       const customer = await loadCustomerByDocument(value)

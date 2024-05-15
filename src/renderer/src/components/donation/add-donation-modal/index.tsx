@@ -74,6 +74,7 @@ export const AddDonationModal = ({ open, setOpen, data, fetchData }: AddDonation
       {contextHolder}
       <Steps
         current={stepNumber}
+        style={{ marginBottom: 12 }}
         items={[
           {
             title: 'Doação'

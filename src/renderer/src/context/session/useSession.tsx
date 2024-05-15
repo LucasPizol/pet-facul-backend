@@ -28,35 +28,43 @@ export const useSession = () => {
 export const SessionProvider = ({ children }: any) => {
   const [user, setUser] = useState<IUserModel | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const [pageProgress, setPageProgress] = useState<number>(0)
+  const [pageProgress, setPageProgress] = useState<number>(1)
 
   useEffect(() => {
     setPageProgress(0)
-    verifyUserSession()
-      .then((user) => {
-        setLoading(false)
 
-        if (!user) {
-          setUser(null)
-          setPageProgress(0)
-          return
-        }
-        for (let i = 0; i <= 99; i++) {
-          setTimeout(() => {
-            setPageProgress(i)
-            if (i === 99) {
-              setPageProgress(100)
+    const token = localStorage.getItem('@animals:token')
 
-              setTimeout(() => {
-                setUser(user)
-                setPageProgress(0)
-              }, 1000)
-            }
-          }, 10 * i)
-        }
-      })
-      .catch(logout)
-      .finally(() => setPageProgress(0))
+    if (!token) {
+      setUser(null)
+      setPageProgress(0)
+    } else {
+      verifyUserSession()
+        .then((user) => {
+          setLoading(false)
+
+          if (!user) {
+            setUser(null)
+            setPageProgress(0)
+            return
+          }
+          for (let i = 0; i <= 99; i++) {
+            setTimeout(() => {
+              setPageProgress(i)
+              if (i === 99) {
+                setPageProgress(100)
+
+                setTimeout(() => {
+                  setUser(user)
+                  setPageProgress(0)
+                }, 1000)
+              }
+            }, 10 * i)
+          }
+        })
+        .catch(logout)
+        .finally(() => setPageProgress(0))
+    }
   }, [])
 
   const login = async (params: IAuthenticateUserModel) => {

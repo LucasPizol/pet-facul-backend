@@ -16,7 +16,11 @@ export const CustomerForm = ({ form }: CustomerFormProps) => {
 
   return (
     <Form layout="vertical" form={form}>
-      <DocumentField disableFields={handleDisableFields} form={form} />
+      <DocumentField
+        disableFields={handleDisableFields}
+        form={form}
+        isFieldsDisabled={disableFields}
+      />
       <NameField disabled={disableFields} />
       <EmailField disabled={disableFields} />
       <PhoneField disabled={disableFields} />
