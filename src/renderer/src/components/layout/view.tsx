@@ -64,7 +64,18 @@ export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePa
         />
       </Sider>
       <Layout>
-        <Content style={{ margin: '24px 16px 0' }}>{children}</Content>
+        <Content
+          style={{
+            margin: '24px 16px 0',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column'
+          }}
+        >
+          {children}
+        </Content>
       </Layout>
     </Layout>
   )

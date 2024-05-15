@@ -8,11 +8,16 @@ import { DateColumn } from './columns/date'
 
 export const DonationView = ({ donations }: ReturnType<typeof useDonationModel>) => {
   const columns = useMemo(() => {
-    return [...ProductColumn(donations), ...UnitColumn(donations), ...ValueColumn(), ...DateColumn()]
+    return [
+      ...ProductColumn(donations),
+      ...UnitColumn(donations),
+      ...ValueColumn(),
+      ...DateColumn()
+    ]
   }, [donations])
 
   return (
-    <Col span={24}>
+    <Col span={24} style={{ width: '100%', height: '100%' }}>
       <Typography.Title
         style={{
           fontFamily: 'Montserrat',
@@ -29,9 +34,25 @@ export const DonationView = ({ donations }: ReturnType<typeof useDonationModel>)
           filterConfirm: 'OK',
           filterReset: 'Limpar'
         }}
+        style={{ height: '77%' }}
+        scroll={{ y: 'calc(95vh - 61px - 56px - 39px - 5px)' }}
         bordered
         dataSource={donations}
         columns={columns}
+        className="donations-table"
+        size="small"
+        pagination={{
+          showSizeChanger: true,
+          pageSizeOptions: ['5', '10', '20', '50', '100'],
+          defaultPageSize: 10,
+          responsive: true,
+
+          showTotal: (total) => (
+            <span style={{ flex: 1, width: '100%' }}>
+              Há registro de <b>{total}</b> doações .
+            </span>
+          )
+        }}
       ></Table>
     </Col>
   )
