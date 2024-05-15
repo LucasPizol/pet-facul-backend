@@ -1,5 +1,6 @@
 import { IUserModel } from "@/domain/models/user";
 import { CustomerInfra } from "@/infra/customer/customer-infra";
+import { prismaHelper } from "@/infra/prisma/prisma-helper";
 import { IHttpRequest } from "@/main/protocols/http";
 import { LoadCustomerByUniqueParamsUseCase } from "@/modules/customer/use-case/load-customer-by-unique-params/load-customer-by-unique-params";
 import { JWTService } from "@/services/implementations/jwt/jwt-service";
@@ -31,10 +32,11 @@ export const ensureAuthenticateUser = async (
         error: "Unauthorized",
       });
 
-    const user = await new LoadCustomerByUniqueParamsUseCase(
-      new CustomerInfra()
-    ).loadByUniqueParams({
-      id: verifyToken.id,
+
+    const user = await prismaHelper.user.findUnique({
+      where: {
+        id: verifyToken.id,
+      },
     });
 
     request.user = {

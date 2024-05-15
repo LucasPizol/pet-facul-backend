@@ -1,10 +1,13 @@
 import { usePageLayout } from './model'
 import { UserOutlined } from '@ant-design/icons'
-import { Avatar, Layout, Menu, Row, Typography } from 'antd'
+import { Avatar, Button, Col, Layout, Menu, Row, Typography } from 'antd'
 
 const { Content, Sider } = Layout
 
 export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePageLayout>) => {
+
+  console.log(user)
+
   return (
     <Layout
       className="layout"
@@ -16,10 +19,23 @@ export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePa
         breakpoint="lg"
         collapsedWidth="0"
         style={{
-          padding: 0
+          padding: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          width: '100%',
+          justifyContent: 'flex-start'
         }}
       >
-        <Row style={{ width: '100%', gap: 8, alignItems: 'center', padding: 12 }}>
+        <Row
+          style={{
+            width: '100%',
+            gap: 8,
+            alignItems: 'center',
+            padding: 12,
+            height: '10%'
+          }}
+        >
           <Avatar
             icon={
               <UserOutlined
@@ -46,22 +62,47 @@ export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePa
           )}
         </Row>
 
-        <Menu
-          theme="dark"
+        <Row
           style={{
-            padding: 0,
-            margin: 0
+            height: '83%'
           }}
-          mode="inline"
-          selectedKeys={[path]}
-          items={[
-            {
-              key: '/donations',
-              icon: <UserOutlined />,
-              label: 'Doações'
-            }
-          ]}
-        />
+        >
+          <Menu
+            theme="dark"
+            style={{
+              padding: 0,
+              margin: 0,
+              width: '100%',
+              height: '100%'
+            }}
+            mode="inline"
+            selectedKeys={[path]}
+            items={[
+              {
+                key: '/donations',
+                icon: <UserOutlined />,
+                label: 'Doações'
+              }
+            ]}
+          />
+        </Row>
+        <Row
+          style={{
+            padding: 12,
+            height: '7%',
+            width: '100%'
+          }}
+        >
+          <Button
+            type="primary"
+            danger
+            style={{
+              width: '100%'
+            }}
+          >
+            Sair
+          </Button>
+        </Row>
       </Sider>
       <Layout>
         <Content
