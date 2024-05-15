@@ -1,11 +1,10 @@
 import { usePageLayout } from './model'
 import { UserOutlined } from '@ant-design/icons'
-import { Avatar, Button, Col, Layout, Menu, Row, Typography } from 'antd'
+import { Avatar, Button, Layout, Menu, Row, Typography } from 'antd'
 
 const { Content, Sider } = Layout
 
 export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePageLayout>) => {
-
   console.log(user)
 
   return (
@@ -104,11 +103,20 @@ export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePa
           </Button>
         </Row>
       </Sider>
-      <Layout>
+      <Layout
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height:"100%"
+        }}
+      >
         <Content
           style={{
             margin: '24px 16px 0',
-            height: '100vh',
+            maxHeight: '800px',
+            paddingTop: 20,
+            paddingBottom: 20,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

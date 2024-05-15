@@ -4,12 +4,20 @@ import { useEffect, useState } from 'react'
 
 export const useDonationModel = () => {
   const [donations, setDonations] = useState<IDonationModel[]>([])
+  const [openModal, setOpenModal] = useState<boolean>(false)
+
+  const fetchData = async () => {
+    loadDonation().then(setDonations)
+  }
 
   useEffect(() => {
-    loadDonation().then(setDonations)
+    fetchData()
   }, [])
 
   return {
-    donations
+    donations,
+    openModal,
+    setOpenModal,
+    fetchData
   }
 }
