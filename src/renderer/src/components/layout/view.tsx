@@ -1,10 +1,10 @@
 import { usePageLayout } from './model'
 import { UserOutlined } from '@ant-design/icons'
-import { Avatar, Layout, Menu } from 'antd'
+import { Avatar, Layout, Menu, Row, Typography } from 'antd'
 
 const { Content, Sider } = Layout
 
-export const PageLayoutView = ({ path, children }: ReturnType<typeof usePageLayout>) => {
+export const PageLayoutView = ({ path, children, user }: ReturnType<typeof usePageLayout>) => {
   return (
     <Layout
       className="layout"
@@ -19,7 +19,33 @@ export const PageLayoutView = ({ path, children }: ReturnType<typeof usePageLayo
           padding: 0
         }}
       >
-        <Avatar />
+        <Row style={{ width: '100%', gap: 8, alignItems: 'center', padding: 12 }}>
+          <Avatar
+            icon={
+              <UserOutlined
+                style={{
+                  color: '#fff'
+                }}
+              />
+            }
+            style={{
+              background: 'var(--primary-color)',
+              border: '1px solid #fff'
+            }}
+          />
+          {user?.name && (
+            <Typography.Text
+              style={{
+                color: '#fff',
+                fontFamily: 'Montserrat',
+                fontWeight: 'bold'
+              }}
+            >
+              {user.name}
+            </Typography.Text>
+          )}
+        </Row>
+
         <Menu
           theme="dark"
           style={{

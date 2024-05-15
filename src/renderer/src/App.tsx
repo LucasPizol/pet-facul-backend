@@ -7,17 +7,9 @@ function App(): JSX.Element {
     <SessionProvider>
       <ConfigProvider
         theme={{
-          components: {
-            Button: {
-              colorPrimary: 'var(--secondary-color)',
-              colorPrimaryBg: 'var(--secondary-color)',
-              colorPrimaryHover: '#BCA213',
-              colorPrimaryActive: '#BCA213',
-              colorTextLightSolid: '#000000',
-              colorBgContainer: 'transparent',
-              colorBorder: '#BCA213',
-            },
-          },
+          token: {
+            colorPrimary: '#131929'
+          }
         }}
       >
         <HashRouter>

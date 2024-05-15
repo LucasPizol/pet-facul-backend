@@ -3,20 +3,19 @@ import { LoginPage } from './pages/login'
 import { useMemo } from 'react'
 import { useSession } from './context/session/useSession'
 import { PageLayout } from './components/layout'
+import { DonationPage } from './pages/donation'
 
 export const Routes = () => {
   const { user } = useSession()
   const component = useMemo(() => {
     if (user) {
       return (
-        <>
-          <PageLayout>
-            <ReactRoutes>
-              <Route path="/donations" />
-              <Route path="*" element={<Navigate to="/donations" />} />
-            </ReactRoutes>
-          </PageLayout>
-        </>
+        <PageLayout>
+          <ReactRoutes>
+            <Route path="/donations" element={<DonationPage />} />
+            <Route path="*" element={<Navigate to="/donations" />} />
+          </ReactRoutes>
+        </PageLayout>
       )
     }
 

@@ -4,7 +4,16 @@ import imgLogin from '@renderer/assets/img_login.png'
 import { UsernameField } from '@renderer/components/fields/username'
 import { PasswordField } from '@renderer/components/fields/password'
 
-export const LoginView = ({ loading, form, submitInfo, contextHolder }: ReturnType<typeof useLoginModel>) => {
+export const LoginView = ({
+  loading,
+  form,
+  submitInfo,
+  contextHolder
+}: ReturnType<typeof useLoginModel>) => {
+  const credentials = localStorage.getItem('@animal:credentials')
+    ? JSON.parse(localStorage.getItem('@animal:credentials') || '{}')
+    : undefined
+
   return (
     <Row style={{ height: '100vh', overflow: 'hidden' }}>
       {contextHolder}
@@ -42,7 +51,7 @@ export const LoginView = ({ loading, form, submitInfo, contextHolder }: ReturnTy
           form={form}
           onFinish={(values) => submitInfo(values)}
           className="login-form"
-          initialValues={JSON.parse(localStorage.getItem('@animal:credentials') || '{}')}
+          initialValues={credentials ? { ...credentials, remember: true } : undefined}
         >
           <UsernameField />
           <PasswordField />

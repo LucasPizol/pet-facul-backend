@@ -24,3 +24,20 @@
 .ant-menu-item-selected {
   background-color: #272e41 !important;
 }
+
+.login-form .ant-btn-primary {
+  background-color: var(--secondary-color) !important;
+  color: #000;
+  &:hover {
+    background-color: #bca213 !important;
+  }
+}
+.login-form .ant-btn-default {
+  background-color: transparent !important;
+  color: #fff;
+  border: 1px solid #bca213;
+  &:hover {
+    color: #bca213 !important;
+    border: 1px solid #bca213 !important;
+  }
+}

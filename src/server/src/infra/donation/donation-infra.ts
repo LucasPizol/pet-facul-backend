@@ -22,7 +22,11 @@ export class DonationInfra
   }
 
   async load() {
-    return await prismaHelper.donations.findMany();
+    return await prismaHelper.donations.findMany({
+      orderBy: {
+        createdAt: "desc",
+      }
+    });
   }
 
   async updateById(id: string, data: Partial<IUpdateDonationModel>) {

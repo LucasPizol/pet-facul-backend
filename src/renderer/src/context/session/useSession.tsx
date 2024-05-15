@@ -31,7 +31,7 @@ export const SessionProvider = ({ children }: any) => {
       setLoading(true)
       const user = await authenticateUser(params)
       setUser(user)
-      sessionStorage.setItem('token', user.token)
+      localStorage.setItem('@animals:token', user.token)
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -44,6 +44,7 @@ export const SessionProvider = ({ children }: any) => {
       setLoading(true)
       const user = await registerUser(params)
       setUser(user)
+      localStorage.setItem('@animals:token', user.token)
       setLoading(false)
     } catch (error) {
       setLoading(false)
