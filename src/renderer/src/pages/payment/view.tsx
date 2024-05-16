@@ -24,6 +24,10 @@ export const PaymentView = ({
     ]
   }, [payments])
 
+  if (false) {
+    fetchData()
+  }
+
   return (
     <Col
       span={24}
