@@ -1,3 +1,5 @@
+import { ICustomerModel } from './customer'
+
 export interface IDonationModel {
   id: string
   product: string
@@ -6,6 +8,7 @@ export interface IDonationModel {
   value: number
   createdAt: Date
   updatedAt: Date
+  customer: ICustomerModel
 }
 
 export interface IAddDonationModel {

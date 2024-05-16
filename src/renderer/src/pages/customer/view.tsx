@@ -12,11 +12,13 @@ export const CustomerView = ({
   customers,
   openModal,
   setOpenModal,
-  fetchData
+  fetchData,
+  customerId,
+  setCustomerId
 }: ReturnType<typeof useCustomerModel>) => {
   const columns = useMemo(() => {
     return [
-      ...NameColumn(customers),
+      ...NameColumn(customers, setCustomerId),
       ...DocumentColumn(customers),
       ...EmailColumn(customers),
       ...PhoneColumn(customers)
@@ -51,7 +53,11 @@ export const CustomerView = ({
         + Adicionar tutor
       </Button>
 
-      <GenericTable columns={columns} data={customers} name="tutores" />
+      <GenericTable
+        columns={columns}
+        data={customers.filter((customer) => !customerId || customer.id === customerId)}
+        name="tutores"
+      />
     </Col>
   )
 }

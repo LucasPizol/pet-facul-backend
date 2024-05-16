@@ -1,12 +1,13 @@
+import { AddDonationModal } from '@renderer/components/donation/add-donation-modal'
+import { GenericTable } from '@renderer/components/generic-table/generic-table'
 import { Button, Col, Typography } from 'antd'
-import { useDonationModel } from './model'
 import { useMemo } from 'react'
+import { CustomerNameColumn } from './columns/customer-name'
+import { DateColumn } from './columns/date'
 import { ProductColumn } from './columns/product'
 import { UnitColumn } from './columns/unit'
 import { ValueColumn } from './columns/value'
-import { DateColumn } from './columns/date'
-import { AddDonationModal } from '@renderer/components/donation/add-donation-modal'
-import { GenericTable } from '@renderer/components/generic-table/generic-table'
+import { useDonationModel } from './model'
 
 export const DonationView = ({
   donations,
@@ -18,6 +19,7 @@ export const DonationView = ({
     return [
       ...ProductColumn(donations),
       ...UnitColumn(donations),
+      ...CustomerNameColumn(donations),
       ...ValueColumn(),
       ...DateColumn()
     ]
