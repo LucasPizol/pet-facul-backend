@@ -61,6 +61,7 @@ model Payment {
   hasDeleted Boolean @default(false)
   hasPaid    Boolean @default(false)
 
+  deadline  DateTime
   createdAt DateTime  @default(now())
   paidAt    DateTime?
   deletedAt DateTime?

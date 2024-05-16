@@ -14,6 +14,11 @@ const items = [
     label: 'Tutores',
     key: '/customers',
     icon: <UserOutlined />
+  },
+  {
+    label: ' Pagamentos',
+    key: '/payments',
+    icon: '$'
   }
 ]
 

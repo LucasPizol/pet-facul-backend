@@ -7,48 +7,53 @@ import {
   badRequest,
   created,
   sendError,
-  validateBodyFields,
-} from "./add-payment-protocols";
+  validateBodyFields
+} from './add-payment-protocols'
 
 export class AddPaymentController implements IController {
-  private readonly addPaymentUseCase: IAddPayment;
+  private readonly addPaymentUseCase: IAddPayment
 
   constructor(addPaymentUseCase: IAddPayment) {
-    this.addPaymentUseCase = addPaymentUseCase;
+    this.addPaymentUseCase = addPaymentUseCase
   }
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const user = httpRequest.user;
+      const user = httpRequest.user
 
-      if (!user) return badRequest(new Error("user"));
+      if (!user) return badRequest(new Error('user'))
 
       const data = validateBodyFields<IAddPaymentModel>(
         [
           {
-            key: "value",
+            key: 'value',
             required: true,
-            type: "number",
+            type: 'number'
           },
           {
-            key: "description",
+            key: 'description',
             required: false,
-            type: "string",
+            type: 'string'
           },
           {
-            key: "type",
+            key: 'type',
             required: true,
-            type: "string",
+            type: 'string'
           },
+          {
+            key: 'deadline',
+            required: true,
+            type: 'string'
+          }
         ],
         httpRequest.body
-      );
+      )
 
-      const response = await this.addPaymentUseCase.add(data);
+      const response = await this.addPaymentUseCase.add(data)
 
-      return created(response);
+      return created(response)
     } catch (error) {
-      return sendError(error);
+      return sendError(error)
     }
   }
 }

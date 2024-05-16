@@ -8,9 +8,9 @@ export interface IPaymentModel {
   hasDeleted: boolean
   hasPaid: boolean
   createdAt: Date
-  paidAt: Date | null
+  paidAt: string | null
   deletedAt: Date | null
-  deadline: Date
+  deadline: string
 }
 
 export interface IAddPaymentModel {

@@ -1,13 +1,14 @@
-import { Navigate, Routes as ReactRoutes, Route } from 'react-router-dom'
-import { LoginPage } from './pages/login'
-import { useMemo } from 'react'
-import { useSession } from './context/session/useSession'
-import { PageLayout } from './components/layout'
-import { DonationPage } from './pages/donation'
-import { Col, Progress } from 'antd'
-import Lottie from 'react-lottie'
 import dogLoading from '@renderer/assets/lotties/dog_loading.json'
+import { Col, Progress } from 'antd'
+import { useMemo } from 'react'
+import Lottie from 'react-lottie'
+import { Navigate, Routes as ReactRoutes, Route } from 'react-router-dom'
+import { PageLayout } from './components/layout'
+import { useSession } from './context/session/useSession'
 import { CustomerPage } from './pages/customer'
+import { DonationPage } from './pages/donation'
+import { LoginPage } from './pages/login'
+import { PaymentPage } from './pages/payment'
 
 export const Routes = () => {
   const { user, pageProgress } = useSession()
@@ -61,6 +62,7 @@ export const Routes = () => {
           <ReactRoutes>
             <Route path="/donations" element={<DonationPage />} />
             <Route path="/customers" element={<CustomerPage />} />
+            <Route path="/payments" element={<PaymentPage />} />
             <Route path="*" element={<Navigate to="/donations" />} />
           </ReactRoutes>
         </PageLayout>
