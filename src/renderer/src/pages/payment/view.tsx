@@ -1,7 +1,9 @@
 import { GenericTable } from '@renderer/components/generic-table/generic-table'
 import { AddPaymentModal } from '@renderer/components/payment/add-payment-modal'
+import { UpdatePaymentModal } from '@renderer/components/payment/update-payment-modal'
 import { Button, Col, Typography } from 'antd'
 import { useMemo } from 'react'
+import { ActionsColumn } from './columns/actions'
 import { DateColumn } from './columns/date'
 import { DescriptionColumn } from './columns/description'
 import { PaidAtColumn } from './columns/paid-at'
@@ -13,6 +15,8 @@ export const PaymentView = ({
   payments,
   openModal,
   setOpenModal,
+  openPaidModal,
+  setOpenPaidModal,
   fetchData
 }: ReturnType<typeof usePaymentsModel>) => {
   const columns = useMemo(() => {
@@ -21,7 +25,8 @@ export const PaymentView = ({
       ...SituationColumn(),
       ...ValueColumn(),
       ...DateColumn(),
-      ...PaidAtColumn()
+      ...PaidAtColumn(),
+      ...ActionsColumn({ onClick: () => setOpenPaidModal(true) })
     ]
   }, [payments])
 
@@ -42,6 +47,7 @@ export const PaymentView = ({
       }}
     >
       <AddPaymentModal fetchData={fetchData} open={openModal} setOpen={setOpenModal} />
+      <UpdatePaymentModal fetchData={fetchData} open={openPaidModal} setOpen={setOpenPaidModal} />
       <Typography.Title
         style={{
           fontFamily: 'Montserrat',

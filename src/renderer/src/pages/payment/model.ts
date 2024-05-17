@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 export const usePaymentsModel = () => {
   const [payments, setPayments] = useState<IPaymentModel[]>([])
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const [openPaidModal, setOpenPaidModal] = useState<boolean>(false)
 
   const fetchData = async () => {
     loadPayment().then(setPayments)
@@ -17,6 +18,8 @@ export const usePaymentsModel = () => {
   return {
     payments,
     openModal,
+    openPaidModal,
+    setOpenPaidModal,
     setOpenModal,
     fetchData
   }
