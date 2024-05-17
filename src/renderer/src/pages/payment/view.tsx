@@ -1,4 +1,5 @@
 import { GenericTable } from '@renderer/components/generic-table/generic-table'
+import { AddPaymentModal } from '@renderer/components/payment/add-payment-modal'
 import { Button, Col, Typography } from 'antd'
 import { useMemo } from 'react'
 import { DateColumn } from './columns/date'
@@ -40,12 +41,7 @@ export const PaymentView = ({
         gap: 12
       }}
     >
-      {/* <AddDonationModal
-        fetchData={fetchData}
-        open={openModal}
-        setOpen={setOpenModal}
-        data={payments}
-      /> */}
+      <AddPaymentModal fetchData={fetchData} open={openModal} setOpen={setOpenModal} />
       <Typography.Title
         style={{
           fontFamily: 'Montserrat',
@@ -55,10 +51,10 @@ export const PaymentView = ({
           margin: 0
         }}
       >
-        Histórico de doações
+        Contas a pagar
       </Typography.Title>
       <Button type="primary" onClick={() => setOpenModal(!openModal)}>
-        + Adicionar doação
+        + Adicionar conta
       </Button>
 
       <GenericTable columns={columns} data={payments} name="pagamentos" />
