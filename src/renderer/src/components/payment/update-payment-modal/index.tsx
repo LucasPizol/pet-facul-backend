@@ -8,16 +8,18 @@ interface AddDonationModalProps {
   open: boolean
   setOpen: Dispatch<boolean>
   fetchData: () => Promise<void>
+  id: string | undefined
 }
 
-export const UpdatePaymentModal = ({ open, setOpen, fetchData }: AddDonationModalProps) => {
+export const UpdatePaymentModal = ({ open, setOpen, fetchData, id }: AddDonationModalProps) => {
   const [form] = Form.useForm()
 
   const [messageApi, contextHolder] = message.useMessage()
 
   const handleSubmit = async (values: IUpdatePaymentModel) => {
     try {
-      await updatePayment(values)
+      if (!id) return
+      await updatePayment(id, values)
       messageApi.success('Conta adicionado com sucesso!')
       await fetchData()
       form.resetFields()

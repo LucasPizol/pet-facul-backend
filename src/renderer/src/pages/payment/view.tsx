@@ -17,7 +17,9 @@ export const PaymentView = ({
   setOpenModal,
   openPaidModal,
   setOpenPaidModal,
-  fetchData
+  fetchData,
+  selectedId,
+  setSelectedId
 }: ReturnType<typeof usePaymentsModel>) => {
   const columns = useMemo(() => {
     return [
@@ -26,7 +28,12 @@ export const PaymentView = ({
       ...ValueColumn(),
       ...DateColumn(),
       ...PaidAtColumn(),
-      ...ActionsColumn({ onClick: () => setOpenPaidModal(true) })
+      ...ActionsColumn({
+        onClick: (id: string) => {
+          setSelectedId(id)
+          setOpenPaidModal(true)
+        }
+      })
     ]
   }, [payments])
 
@@ -47,7 +54,12 @@ export const PaymentView = ({
       }}
     >
       <AddPaymentModal fetchData={fetchData} open={openModal} setOpen={setOpenModal} />
-      <UpdatePaymentModal fetchData={fetchData} open={openPaidModal} setOpen={setOpenPaidModal} />
+      <UpdatePaymentModal
+        fetchData={fetchData}
+        open={openPaidModal}
+        setOpen={setOpenPaidModal}
+        id={selectedId}
+      />
       <Typography.Title
         style={{
           fontFamily: 'Montserrat',

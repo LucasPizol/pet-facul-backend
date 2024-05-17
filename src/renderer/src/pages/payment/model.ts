@@ -6,6 +6,7 @@ export const usePaymentsModel = () => {
   const [payments, setPayments] = useState<IPaymentModel[]>([])
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [openPaidModal, setOpenPaidModal] = useState<boolean>(false)
+  const [selectedId, setSelectedId] = useState<string>()
 
   const fetchData = async () => {
     loadPayment().then(setPayments)
@@ -21,6 +22,8 @@ export const usePaymentsModel = () => {
     openPaidModal,
     setOpenPaidModal,
     setOpenModal,
-    fetchData
+    fetchData,
+    setSelectedId,
+    selectedId
   }
 }

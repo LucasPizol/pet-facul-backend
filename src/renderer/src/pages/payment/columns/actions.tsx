@@ -3,7 +3,7 @@ import { Button } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 
 export interface ActionsProps {
-  onClick: () => void
+  onClick: (id: string) => void
 }
 
 export const ActionsColumn = ({ onClick }: ActionsProps): ColumnsType<IDonationModel> => {
@@ -12,8 +12,8 @@ export const ActionsColumn = ({ onClick }: ActionsProps): ColumnsType<IDonationM
       title: 'Actions',
       dataIndex: 'actions',
       key: 'actions',
-      render: (_) => {
-        return <Button onClick={onClick}></Button>
+      render: (_, record) => {
+        return <Button onClick={() => onClick(record.id)}></Button>
       }
     }
   ]
