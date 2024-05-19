@@ -1,13 +1,14 @@
 import { IPaymentModel } from '@renderer/interfaces/payment'
+import { formatDate } from '@renderer/utils/format-date'
 import { Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 
 export const SituationColumn = (): ColumnsType<IPaymentModel> => {
   return [
     {
-      title: 'Produto',
-      dataIndex: 'product',
-      key: 'product',
+      title: 'Situação',
+      dataIndex: 'situation',
+      key: 'situation',
       filters: [
         {
           text: 'PAGO',
@@ -34,21 +35,15 @@ export const SituationColumn = (): ColumnsType<IPaymentModel> => {
       filterSearch: true,
 
       render: (_, record) => {
-        const today = new Date()
-        const [year, month, day] = record.deadline.split('T')[0].split('-')
+        const today = formatDate(new Date().toISOString())
+        const deadline = formatDate(record.deadline)
 
-        const deadline = new Date(Number(year), Number(month), Number(day))
+        console.log({ deadline, today })
 
         const situation = () => {
-          if (
-            deadline < new Date(today.getFullYear(), today.getMonth(), today.getDate()) &&
-            !record.hasPaid
-          )
+          if (deadline.getTime() < today.getTime() && !record.hasPaid)
             return { label: 'ATRASADO', color: 'red' }
-          if (
-            deadline >= new Date(today.getFullYear(), today.getMonth(), today.getDate()) &&
-            !record.hasPaid
-          )
+          if (deadline.getTime() >= today.getTime() && !record.hasPaid)
             return { label: 'A VENCER', color: 'yellow' }
           return { label: 'PAGO', color: 'green' }
         }

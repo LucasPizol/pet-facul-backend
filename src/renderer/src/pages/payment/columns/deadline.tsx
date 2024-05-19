@@ -1,7 +1,8 @@
 import { IPaymentModel } from '@renderer/interfaces/payment'
+import { formatDate } from '@renderer/utils/format-date'
 import { ColumnsType } from 'antd/es/table'
 
-export const DateColumn = (): ColumnsType<IPaymentModel> => {
+export const DeadlineColumn = (): ColumnsType<IPaymentModel> => {
   return [
     {
       title: 'Vencimento',
@@ -9,11 +10,7 @@ export const DateColumn = (): ColumnsType<IPaymentModel> => {
       key: 'deadline',
       sorter: (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
       render: (_, record) => {
-        const [year, month, day] = record.deadline.split('T')[0].split('-')
-
-        const deadline = new Date(Number(year), Number(month), Number(day))
-
-        return <span>{deadline.toLocaleDateString('pt-br')}</span>
+        return <span>{formatDate(record.deadline).toLocaleDateString('pt-br')}</span>
       }
     }
   ]

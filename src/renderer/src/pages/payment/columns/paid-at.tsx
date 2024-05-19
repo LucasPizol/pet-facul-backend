@@ -1,4 +1,5 @@
 import { IPaymentModel } from '@renderer/interfaces/payment'
+import { formatDate } from '@renderer/utils/format-date'
 import { ColumnsType } from 'antd/es/table'
 
 export const PaidAtColumn = (): ColumnsType<IPaymentModel> => {
@@ -11,11 +12,7 @@ export const PaidAtColumn = (): ColumnsType<IPaymentModel> => {
       render: (_, record) => {
         if (!record.paidAt) return null
 
-        const [year, month, day] = record.paidAt.split('T')[0].split('-')
-
-        const paidAt = new Date(Number(year), Number(month), Number(day))
-
-        return <span>{paidAt.toLocaleDateString('pt-br')}</span>
+        return <span>{formatDate(record.paidAt).toLocaleDateString('pt-br')}</span>
       }
     }
   ]

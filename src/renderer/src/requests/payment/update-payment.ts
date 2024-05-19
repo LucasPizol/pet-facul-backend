@@ -3,7 +3,7 @@ import { IPaymentModel, IUpdatePaymentModel } from '@renderer/interfaces/payment
 
 export const updatePayment = async (
   id: string,
-  data: IUpdatePaymentModel
+  data: Partial<IUpdatePaymentModel>
 ): Promise<IPaymentModel[]> => {
   return api
     .put('/payment/' + id, data)

@@ -17,16 +17,19 @@ export class PaymentInfra
   }
 
   async load() {
-    return await prismaHelper.payment.findMany()
+    return await prismaHelper.payment.findMany({
+      where: {
+        hasDeleted: false
+      }
+    })
   }
 
   async updateById(id: string, data: Partial<IUpdatePaymentModel>) {
     const updateData = {
       ...data,
-      hasPaid: data.hasPaid === undefined ? undefined : data.hasPaid,
-      paidAt: data.hasPaid ? new Date() : null,
       deletedAt: data.hasDeleted === undefined ? undefined : new Date(),
-      hasDeleted: data.hasDeleted === undefined ? undefined : data.hasDeleted
+      hasDeleted: data.hasDeleted === undefined ? undefined : data.hasDeleted,
+      hasPaid: data.paidAt ? true : false
     }
 
     return await prismaHelper.payment.update({

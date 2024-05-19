@@ -4,9 +4,10 @@ import { UpdatePaymentModal } from '@renderer/components/payment/update-payment-
 import { Button, Col, Typography } from 'antd'
 import { useMemo } from 'react'
 import { ActionsColumn } from './columns/actions'
-import { DateColumn } from './columns/date'
+import { DeadlineColumn } from './columns/deadline'
 import { DescriptionColumn } from './columns/description'
 import { PaidAtColumn } from './columns/paid-at'
+import { DaysColumn } from './columns/prev'
 import { SituationColumn } from './columns/situation'
 import { ValueColumn } from './columns/value'
 import { usePaymentsModel } from './model'
@@ -19,20 +20,24 @@ export const PaymentView = ({
   setOpenPaidModal,
   fetchData,
   selectedId,
-  setSelectedId
+  setSelectedId,
+  deletePayment,
+  contextHolder
 }: ReturnType<typeof usePaymentsModel>) => {
   const columns = useMemo(() => {
     return [
       ...DescriptionColumn(payments),
       ...SituationColumn(),
       ...ValueColumn(),
-      ...DateColumn(),
+      ...DeadlineColumn(),
       ...PaidAtColumn(),
+      ...DaysColumn(),
       ...ActionsColumn({
         onClick: (id: string) => {
           setSelectedId(id)
           setOpenPaidModal(true)
-        }
+        },
+        deletePayment
       })
     ]
   }, [payments])
@@ -53,6 +58,7 @@ export const PaymentView = ({
         gap: 12
       }}
     >
+      {contextHolder}
       <AddPaymentModal fetchData={fetchData} open={openModal} setOpen={setOpenModal} />
       <UpdatePaymentModal
         fetchData={fetchData}

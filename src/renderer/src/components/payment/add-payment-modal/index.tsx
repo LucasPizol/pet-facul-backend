@@ -17,7 +17,12 @@ export const AddPaymentModal = ({ open, setOpen, fetchData }: AddDonationModalPr
 
   const handleSubmit = async (values: IAddPaymentModel) => {
     try {
-      await addPayment(values)
+      const deadline = new Date(values.deadline)
+
+      await addPayment({
+        ...values,
+        deadline: new Date(deadline.getFullYear(), deadline.getMonth(), deadline.getDate())
+      })
       messageApi.success('Conta adicionado com sucesso!')
       await fetchData()
       form.resetFields()

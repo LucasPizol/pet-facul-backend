@@ -29,8 +29,9 @@ export class UpdatePaymentByIdController implements IController {
           { key: 'value', required: false, type: 'number' },
           { key: 'description', required: false, type: 'string' },
           { key: 'value', required: false, type: 'string' },
-          { key: 'hasDeleted', required: false, type: 'string' },
-          { key: 'hasPaid', required: false, type: 'boolean' }
+          { key: 'hasDeleted', required: false, type: 'boolean' },
+          { key: 'hasPaid', required: false, type: 'boolean' },
+          { key: 'paidAt', required: false, type: 'string' }
         ],
         httpRequest.body
       )
